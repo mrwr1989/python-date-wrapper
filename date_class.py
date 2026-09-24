@@ -1,6 +1,6 @@
 """A validated calendar-date wrapper built using the Python standard library."""
 
-from datetime import date
+from datetime import date, timedelta
 import calendar
 
 
@@ -64,3 +64,9 @@ class Date:
     def to_day_first_string(self) -> str:
         """Return the date as DD Month YYYY, such as 25 December 2021."""
         return self.__date.strftime("%d %B %Y")
+
+    def__sub__(self, other: "Date") -> int:
+    """Return the signed number of days between two Date objects."""
+    if not isinstance(other, Date):
+        return NotImplemented
+    return (self.__date-other.__date).days    

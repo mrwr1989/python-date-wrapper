@@ -65,8 +65,8 @@ class Date:
         """Return the date as DD Month YYYY, such as 25 December 2021."""
         return self.__date.strftime("%d %B %Y")
 
-    def__sub__(self, other: "Date") -> int:
-    """Return the signed number of days between two Date objects."""
-    if not isinstance(other, Date):
-        return NotImplemented
-    return (self.__date-other.__date).days    
+    def __sub__(self, other: "Date") -> int:
+        """Return the signed number of days between two Date objects."""
+        if not isinstance(other, Date):
+            return NotImplemented
+        return (self.__date - other.__date).days   

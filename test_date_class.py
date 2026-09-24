@@ -98,6 +98,29 @@ class TestDate(unittest.TestCase):
         value.set_date(12, 25, 2021)
         self.assertEqual(value.to_numeric_string(), "12/25/2021")
 
+    def test_subtract_dates_positive(self):
+        """Test subtracting an earlier date from a later date."""
+        later = Date(1, 10, 2024)
+        earlier = Date(1, 5, 2024)
+        self.assertEqual(later - earlier, 5)
+
+    def test_subtract_dates_negative(self):
+        """Test subtraction when the second date is later."""
+        earlier = Date(1, 5, 2024)
+        later = Date(1, 10, 2024)
+        self.assertEqual(earlier - later, -5)
+
+    def test_subtract_same_date(self):
+        """Test that subtracting identical dates returns zero."""
+        first = Date(6, 15, 2024)
+        second = Date(6, 15, 2024)
+        self.assertEqual(first - second, 0)
+
+    def test_subtract_across_leap_day(self):
+        """Test subtraction across February 29 in a leap year."""
+        before = Date(2, 28, 2024)
+        after = Date(3, 1, 2024)
+        self.assertEqual(after - before, 2)
 
 if __name__ == "__main__":
     unittest.main()

@@ -70,3 +70,13 @@ class Date:
         if not isinstance(other, Date):
             return NotImplemented
         return (self.__date - other.__date).days   
+
+    def increment(self) -> "Date":
+        """Move the stored date forward by one day and return this object."""
+        self.__date += timedelta(days=1)
+        return self
+
+    def decrement(self) -> "Date":
+        """Move the stored date backward by one day and return this object."""
+        self.__date -= timedelta(days=1)
+        return self  

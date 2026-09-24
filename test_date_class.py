@@ -122,5 +122,56 @@ class TestDate(unittest.TestCase):
         after = Date(3, 1, 2024)
         self.assertEqual(after - before, 2)
 
+    def test_increment(self):
+        """Test moving a date forward by one day."""
+        value = Date(5, 15, 2024)
+        result = value.increment()
+        self.assertEqual(value.to_numeric_string(), "05/16/2024")
+        self.assertIs(result, value)
+
+    def test_increment_end_of_month(self):
+        """Test incrementing across a month boundary."""
+        value = Date(4, 30, 2024)
+        value.increment()
+        self.assertEqual(value.to_numeric_string(), "05/01/2024")
+
+    def test_increment_end_of_year(self):
+        """Test incrementing across a year boundary."""
+        value = Date(12, 31, 2024)
+        value.increment()
+        self.assertEqual(value.to_numeric_string(), "01/01/2025")
+
+    def test_increment_leap_day(self):
+        """Test incrementing onto February 29 during a leap year."""
+        value = Date(2, 28, 2024)
+        value.increment()
+        self.assertEqual(value.to_numeric_string(), "02/29/2024")
+
+    def test_decrement(self):
+        """Test moving a date backward by one day."""
+        value = Date(5, 15, 2024)
+        result = value.decrement()
+        self.assertEqual(value.to_numeric_string(), "05/14/2024")
+        self.assertIs(result, value)
+
+    def test_decrement_start_of_month(self):
+        """Test decrementing across a month boundary."""
+        value = Date(5, 1, 2024)
+        value.decrement()
+        self.assertEqual(value.to_numeric_string(), "04/30/2024")
+
+    def test_decrement_start_of_year(self):
+        """Test decrementing across a year boundary."""
+        value = Date(1, 1, 2025)
+        value.decrement()
+        self.assertEqual(value.to_numeric_string(), "12/31/2024")
+
+    def test_decrement_leap_day(self):
+        """Test decrementing onto February 29 during a leap year."""
+        value = Date(3, 1, 2024)
+        value.decrement()
+        self.assertEqual(value.to_numeric_string(), "02/29/2024")
+
+
 if __name__ == "__main__":
     unittest.main()

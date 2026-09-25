@@ -172,6 +172,15 @@ class TestDate(unittest.TestCase):
         value.decrement()
         self.assertEqual(value.to_numeric_string(), "02/29/2024")
 
+    def test_str(self):
+        """Test the exact string representation of a Date."""
+        value = Date(4, 18, 2018)
+        self.assertEqual(str(value), "April 18, 2018")
+
+    def test_str_single_digit_day(self):
+        """Test that a single-digit day does not contain a leading zero."""
+        value = Date(1, 2, 2024)
+        self.assertEqual(str(value), "January 2, 2024")
 
 if __name__ == "__main__":
     unittest.main()

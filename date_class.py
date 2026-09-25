@@ -80,3 +80,6 @@ class Date:
         """Move the stored date backward by one day and return this object."""
         self.__date -= timedelta(days=1)
         return self  
+    def __str__(self) -> str:
+        """Return the date in Month D, YYYY format."""
+        return f"{self.__date.strftime('%B')} {self.day}, {self.year}"

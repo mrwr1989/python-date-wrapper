@@ -2,7 +2,7 @@
 
 import unittest
 from date_class import Date
-
+from unittest.mock import patch
 
 class TestDate(unittest.TestCase):
     """Check construction, read-only properties, updates, calendar rules, and formats."""
@@ -14,7 +14,11 @@ class TestDate(unittest.TestCase):
     def test_valid_constructor(self):
         value = Date(12, 25, 2021)
         self.assertEqual((value.month, value.day, value.year), (12, 25, 2021))
-
+    @patch("builtins.input", side_effect=["12", "25", "2021"])
+    def test_from_input(self, mock_input):
+        value = Date.from_input()
+        self.assertEqual((value.month, value.day, value.year), (12, 25, 2021))
+        
     def test_valid_leap_day(self):
         self.assertEqual(Date(2, 29, 2024).day, 29)
 

@@ -83,3 +83,11 @@ class Date:
     def __str__(self) -> str:
         """Return the date in Month D, YYYY format."""
         return f"{self.__date.strftime('%B')} {self.day}, {self.year}"
+
+    @classmethod
+    def from_input(cls):
+        """Create a Date object from user input."""
+        year = int(input("Enter year: "))
+        month = int(input("Enter month: "))
+        day = int(input("Enter day: "))
+        return cls(year, month, day)

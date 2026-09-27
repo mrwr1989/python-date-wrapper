@@ -87,7 +87,10 @@ class Date:
     @classmethod
     def from_input(cls):
         """Create a Date object from user input."""
-        year = int(input("Enter year: "))
+           @classmethod
+    def from_input(cls):
+        """Create a Date object from user input."""
         month = int(input("Enter month: "))
         day = int(input("Enter day: "))
-        return cls(year, month, day)
+        year = int(input("Enter year: "))
+        return cls(month, day, year)
